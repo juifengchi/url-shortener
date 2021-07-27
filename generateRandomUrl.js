@@ -5,7 +5,7 @@ function generateRandomUrl () {
 
   const collection = numbers.split('').concat(lowerCaseLetters.split(''), upperCaseLetters.split(''))
   let url = ''
-  for (let i = 0; i < 5 ; i++) {
+  for (let i = 0; i < 5; i++) {
     const index = Math.floor(Math.random() * collection.length)
     url += collection[index]
   }
