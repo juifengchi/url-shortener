@@ -1,8 +1,7 @@
-function generateRandomUrl () {
+function generateRandomCode () {
   const numbers = '1234567890'
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()
-
   const collection = numbers.split('').concat(lowerCaseLetters.split(''), upperCaseLetters.split(''))
   let url = ''
   for (let i = 0; i < 5; i++) {
@@ -12,4 +11,4 @@ function generateRandomUrl () {
   return url
 }
 
-module.exports = generateRandomUrl
+module.exports = generateRandomCode
