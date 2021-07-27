@@ -1,7 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const Url = require('./models/url')
+const generateShortenedUrl = require('./generateShortenedUrl')
 
+const herokuUrl = 'http://localhost:3000/'
 const app = express()
 const port = 3000
 
@@ -20,8 +23,31 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+app.use(express.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
   res.render('index')
+})
+
+app.post('/', (req, res) => {
+  const originalUrl = req.body.originalUrl
+  const shortenedUrl = generateShortenedUrl()
+  Url.create({ originalUrl, shortenedUrl })
+    .then(() => {
+      res.render('index', { originalUrl, shortenedUrl })
+    })
+    .catch(error => console.log(error))
+})
+
+app.get('/:randomCode', (req, res) => {
+  const randomCode = req.params.randomCode
+  const shortenedUrl = herokuUrl + randomCode
+  Url.findOne({ shortenedUrl })
+    .lean()
+    .then(url => {
+      res.redirect(url.originalUrl)
+    })
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
