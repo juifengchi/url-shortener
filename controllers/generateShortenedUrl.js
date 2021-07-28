@@ -4,7 +4,7 @@ async function generateShortenedUrl () {
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()
   const collection = numbers.split('').concat(lowerCaseLetters.split(''), upperCaseLetters.split(''))
-  const herokuUrl = 'http://localhost:3000/'
+  const herokuUrl = 'https://arcane-tor-06453.herokuapp.com/'
   let randomCode = ''
 
   for (let i = 0; i < 5; i++) {
