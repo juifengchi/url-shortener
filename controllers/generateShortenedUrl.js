@@ -1,5 +1,5 @@
 async function generateShortenedUrl () {
-  const Url = require('./models/url')
+  const Url = require('../models/url')
   const numbers = '1234567890'
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()

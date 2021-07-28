@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const Url = require('./models/url')
-const generateShortenedUrl = require('./generateShortenedUrl')
+const generateShortenedUrl = require('./controllers/generateShortenedUrl')
 
 const herokuUrl = 'http://localhost:3000/'
 const app = express()

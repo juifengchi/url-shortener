@@ -1,10 +1,12 @@
-<h1>URL Shortener</h1>
-
-<form action="/" method="POST">
-  <input type="url" name="originalUrl" placeholder="Input URL here" value="{{originalUrl}}" required>
-  <button type="submit">Shorten</button>
+<form action="/" method="POST" class="d-flex flex-column justify-content center align-items-center">
+  <img src="https://free-url-shortener.rb.gy/open-graph.png" style="height: 50%; width: 50%;" class="my-3">
+  <input type="url" name="originalUrl" placeholder="Input URL here" class="form-control my-3" value="{{originalUrl}}" required>
+  <button type="submit" class="btn btn-primary my-3">Shorten</button>
 </form>
 
 {{#if shortenedUrl}}
-  <a href="{{shortenedUrl}}">{{shortenedUrl}}</a>
+  <div class="d-flex flex-column justify-content center align-items-center my-3">
+    <h5>Success! Please use this link:</h5>
+    <a href="{{shortenedUrl}}" class="alert alert-info">{{shortenedUrl}}</a>
+  </div>
 {{/if}}
