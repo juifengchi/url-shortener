@@ -29,12 +29,20 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
+  let shortenedUrl = await generateShortenedUrl()
   const originalUrl = req.body.originalUrl
-  const shortenedUrl = generateShortenedUrl()
-  Url.create({ originalUrl, shortenedUrl })
-    .then(() => {
-      res.render('index', { originalUrl, shortenedUrl })
+
+  Url.findOne({ originalUrl })
+    .lean()
+    .then(url => {
+      if (url) {
+        shortenedUrl = url.shortenedUrl
+        return res.render('index', { originalUrl, shortenedUrl })
+      }
+
+      Url.create({ originalUrl, shortenedUrl })
+        .then(() => res.render('index', { originalUrl, shortenedUrl }))
     })
     .catch(error => console.log(error))
 })
@@ -44,9 +52,7 @@ app.get('/:randomCode', (req, res) => {
   const shortenedUrl = herokuUrl + randomCode
   Url.findOne({ shortenedUrl })
     .lean()
-    .then(url => {
-      res.redirect(url.originalUrl)
-    })
+    .then(url => res.redirect(url.originalUrl))
     .catch(error => console.log(error))
 })
 

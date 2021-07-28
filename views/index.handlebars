@@ -1,11 +1,10 @@
 <h1>URL Shortener</h1>
 
 <form action="/" method="POST">
-  <input type="text" name="originalUrl" placeholder="Input URL here" value="{{originalUrl}}">
+  <input type="url" name="originalUrl" placeholder="Input URL here" value="{{originalUrl}}" required>
   <button type="submit">Shorten</button>
 </form>
 
 {{#if shortenedUrl}}
   <a href="{{shortenedUrl}}">{{shortenedUrl}}</a>
-  <button>Copy</button>
 {{/if}}
