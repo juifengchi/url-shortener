@@ -6,9 +6,10 @@ const generateShortenedUrl = require('./controllers/generateShortenedUrl')
 
 const herokuUrl = 'http://localhost:3000/'
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/url-shortener'
 
-mongoose.connect('mongodb://localhost/url-shortener', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 
@@ -56,6 +57,6 @@ app.get('/:randomCode', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`)
 })
