@@ -1,6 +1,6 @@
-# Expense Tracker
+# URL Shortener
 
-透過 Node.js/ Express/ MongoDB 打造的短網址產生器。
+透過 Node.js/ Express/ MongoDB 打造的短網址產生器
 
 ## Features
 
@@ -11,6 +11,12 @@
 ## Preview
 
 ![](localhost_3000_.png)
+
+## Prerequisites
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
 
 ## Installing
 
